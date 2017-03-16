@@ -1,22 +1,48 @@
 import items
-
+import world
 
 class Player:
     def __init__(self):
         self.inventory = [items.rock(),
                             items.Dagger(),
                             'Gold(5)',
-                            'Crusty Bread']
-
-        self.x = 1
-        self.y = 0
+                            items.CrustyBread()]
+        self.x = world.start_tile_location[0]
+        self.y = world.start_tile_location[1]
         self.hp = 100
+        self.gold = 5
+        self.victory = False
+
+    def is_alive(self):
+        return self.hp > 0
 
     def print_inventory(self):
         print("Inventory:")
         for item in self.inventory:
             print('*' + str(item))
         best_weapon = self.most_powerful_weapon()
+
+    def heal(self):
+        consumables = [item for item in self.inventory
+                        if isinstance(item, items.Consumable)]
+        if not consumables:
+            print("You do not have any items to heal you")
+            return
+
+        for i, item in enumerate(consumables, 1):
+            print("Choose an item to use as heal: ")
+            print("{}. {}".format(i, item))
+            valid = False
+            while not valid:
+                choice = input("")
+                try:
+                    to_eat = consumables[int(choice) - 1]
+                    self.hp = min(100, self.hp + to_eat.healing_value)
+                    self.inventory.remove(to_eat)
+                    print("You ate {} Current HP: {}".format(to_eat, self.hp))
+                    valid = True
+                except (ValueError, IndexError):
+                    print("Invalid choice, try again.")
 
     def most_powerful_weapon(self):
         max_damage = 0
@@ -30,6 +56,18 @@ class Player:
                 pass
 
         return best_weapon
+
+    def attack(self):
+        best_weapon = self.most_powerful_weapon()
+        room = world.tile_at(self.x, self.y)
+        enemy = room.enemy
+        print("You use {} against {}!".format(best_weapon.name, enemy.name))
+        enemy.hp -= best_weapon.damage
+        if not enemy.is_alive():
+            print("you killed {}!".format(enemy.name))
+        else:
+            print("{} HP is {}.".format(enemy.name, enemy.hp))
+
 
     def move(self, dx, dy):
         self.x += dx
