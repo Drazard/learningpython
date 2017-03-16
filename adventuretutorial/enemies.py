@@ -1,5 +1,3 @@
-import items, world
-
 class Enemy:
     def __init__(self):
         raise NotImplementedError("Do not create raw enemy objects.")
@@ -13,16 +11,16 @@ class Enemy:
 
 class SpookySkeleton(Enemy):
     def __init__(self):
-    self.name = "Spooky Skeleton"
-    self.hp = 10
-    self.damage = 2
+        self.name = "Spooky Skeleton"
+        self.hp = 10
+        self.damage = 2
 
 
 class GhastlyGhost(Enemy):
     def __init__(self):
-    self.name = "Ghastly Ghost"
-    self.hp = 30
-    self.damage = 10
+        self.name = "Ghastly Ghost"
+        self.hp = 30
+        self.damage = 10
 
 
 class Daniel(Enemy):

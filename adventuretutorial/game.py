@@ -1,6 +1,5 @@
 from player import Player
 import world
-import enemies
 
 def play():
     print("Escape from Cave Terror!")
@@ -8,6 +7,7 @@ def play():
     while True:
         room = world.tile_at(player.x, player.y)
         print(room.intro_text())
+        room.modify_player(player)
         a_input = get_player_command()
         if a_input in ['n', 'N']:
             player.move_north()
@@ -19,6 +19,8 @@ def play():
             player.move_west()
         elif a_input in ['i', 'I']:
             player.print_inventory()
+        elif a_input in ['a', 'A']:
+            player.attack()
         else:
             print("Invalid action!!")
 

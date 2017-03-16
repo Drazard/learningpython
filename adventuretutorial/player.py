@@ -1,4 +1,4 @@
-import items, world
+import items
 
 
 class Player:
@@ -9,14 +9,14 @@ class Player:
                             'Crusty Bread']
 
         self.x = 1
-        self.y = 2
+        self.y = 0
+        self.hp = 100
 
     def print_inventory(self):
         print("Inventory:")
         for item in self.inventory:
             print('*' + str(item))
         best_weapon = self.most_powerful_weapon()
-        print("Your best weapon is our {}".format(best_weapon))
 
     def most_powerful_weapon(self):
         max_damage = 0
