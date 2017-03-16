@@ -129,6 +129,9 @@ def parse_world_dsl():
         for x, dsl_cell in enumerate(dsl_cells):
             # This looks up the abbreviation in the dictionary
             tile_type = tile_type_dict[dsl_cell]
+            if tile_type == StartTile:
+                global start_tile_location
+                start_tile_location = x, y
             # If the dict returns a valid type, create
             # a new tile object passed through the X-Y cords
             # and add it to the row object.
