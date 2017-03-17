@@ -4,6 +4,8 @@ This is a small text based adventure i am working on. It is pretty simple at the
 
 there are a few main commands to utilize while you navigate the castle:
 
+
+
 move around the map using
 
 'n' North
@@ -14,17 +16,23 @@ move around the map using
 
 'w' West
 
+
+
 During an encounter you may use:
 
 'a' Attack an enemy
 
 'h' Heal (if below 100 hp)
 
+
+
 At any time within the game you may use these functions:
 
 'c' Character information
 
 'i' Inventory
+
+
 
 Features to be added:
 
