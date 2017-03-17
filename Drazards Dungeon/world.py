@@ -105,10 +105,8 @@ class EnemyTile(MapTile):
         return text
 
     def modify_player(self, player):
-        if self.enemy.is_alive():
-            player.hp = player.hp - self.enemy.damage
-            print("Enemy does {} damage. You have {} HP remaining."
-            .format(self.enemy.damage, player.hp))
+        pass
+
 
 class TreasureTile(MapTile):
     def __init__(self, x, y):

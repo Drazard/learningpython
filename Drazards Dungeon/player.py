@@ -65,7 +65,7 @@ class Player:
         best_weapon = self.most_powerful_weapon()
         room = world.tile_at(self.x, self.y)
         enemy = room.enemy
-        print("\n\nYou use {} against {}!\nDamage delt: {}".format(best_weapon.name, enemy.name, best_weapon.damage))
+        print("\n\nYou use {} against {}!\n\nYou delt {} damage.".format(best_weapon.name, enemy.name, best_weapon.damage))
 
         enemy.hp -= best_weapon.damage
         if not enemy.is_alive():
@@ -75,8 +75,11 @@ class Player:
             if best_weapon.heal > 0:
                 self.hp = min(100, self.hp + best_weapon.heal)
                 print("Healed: {}\n".format(best_weapon.heal))
-            print("Your HP is: {}\n".format(self.hp))
-            print("{} delt {} Damage.\nEnemy HP is {}\n".format(enemy.name, enemy.damage, enemy.hp))
+
+            print("{} delt {} Damage.\n\nEnemy has {} HP remaining.".format(enemy.name, enemy.damage, enemy.hp))
+            self.hp = self.hp - enemy.damage
+            print("You have {} HP remaining."
+            .format(self.hp))
 
     def move(self, dx, dy):
         self.x += dx
