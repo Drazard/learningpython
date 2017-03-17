@@ -14,9 +14,9 @@ move around the map using
 
 'w' West
 
-During an encounter you hay use:
+During an encounter you may use:
 
-'a' Attack
+'a' Attack an enemy
 
 'h' Heal (if below 100 hp)
 
