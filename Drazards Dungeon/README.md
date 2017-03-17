@@ -7,18 +7,23 @@ there are a few main commands to utilize while you navigate the castle:
 move around the map using
 
 'n' North
+
 's' South
+
 'e' East
+
 'w' West
 
 During an encounter you hay use:
 
 'a' Attack
+
 'h' Heal (if below 100 hp)
 
 At any time within the game you may use these functions:
 
 'c' Character information
+
 'i' Inventory
 
 Features to be added:
