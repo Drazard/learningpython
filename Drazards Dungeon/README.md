@@ -32,6 +32,10 @@ At any time within the game you may use these functions:
 
 'i' Inventory
 
+-----
+Current bugs: My damage modifier only loops once because it is called via __init__. i'm not sure how to fix this.. each time you attack should be weapon.damage - [1-10] however it only works on the first attack. so if your first attcks rolls 2 damage. every attack until that monster is dead will be 2.
+------
+
 
 
 Features to be added:
