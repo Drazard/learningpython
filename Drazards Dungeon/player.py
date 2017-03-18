@@ -1,5 +1,6 @@
 import items
 import world
+import random
 
 class Player:
     def __init__(self):
@@ -11,6 +12,7 @@ class Player:
         self.gold = 5
         self.victory = False
         self.teleport = True
+        self.damage = self.damage()
 
     def is_alive(self):
         return self.hp > 0
@@ -65,21 +67,29 @@ class Player:
         best_weapon = self.most_powerful_weapon()
         room = world.tile_at(self.x, self.y)
         enemy = room.enemy
-        print("\n\nYou use {} against {}!\n\nYou delt {} damage.".format(best_weapon.name, enemy.name, best_weapon.damage))
-
-        enemy.hp -= best_weapon.damage
+        enemy.hp -= self.damage
+        print("\n\nYou use {} against {}!\nYou delt {} damage.".format(best_weapon.name, enemy.name, self.damage))
         if not enemy.is_alive():
             print("you killed {}!\n".format(enemy.name))
             print("Your HP is: {}\n".format(self.hp))
         else:
-            if best_weapon.heal > 0:
-                self.hp = min(100, self.hp + best_weapon.heal)
-                print("Healed: {}\n".format(best_weapon.heal))
+            try:
+                if best_weapon.heal != None:
+                    self.hp = min(100, self.hp + best_weapon.heal)
+                    print("Healed: {}\n".format(best_weapon.heal))
+            except AttributeError:
+                pass
 
-            print("{} delt {} Damage.\n\nEnemy has {} HP remaining.".format(enemy.name, enemy.damage, enemy.hp))
+            print("{} delt {} Damage.\n Enemy has {} HP remaining.".format(enemy.name, enemy.damage, enemy.hp))
             self.hp = self.hp - enemy.damage
             print("You have {} HP remaining."
             .format(self.hp))
+
+    def damage(self):
+        best_weapon = self.most_powerful_weapon()
+        r = random.randint(1,10)
+        best_weapon.damage -= r
+        return best_weapon.damage
 
     def move(self, dx, dy):
         self.x += dx

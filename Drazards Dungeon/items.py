@@ -12,7 +12,6 @@ class rock(Weapon):
         self.description = "A fist sized rock, suitable for bludgeoning."
         self.damage = 5
         self.value = 1
-        self.heal = 0
 
 
 class Dagger(Weapon):
@@ -22,7 +21,6 @@ class Dagger(Weapon):
                             "Somewhat more dangerous than a rock."
         self.damage = 10
         self.value = 30
-        self.heal = 0
 
 
 class RustySword(Weapon):
